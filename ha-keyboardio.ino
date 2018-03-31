@@ -56,6 +56,9 @@
 // Support for Keyboardio's internal keyboard testing mode
 #include "Kaleidoscope-Model01-TestMode.h"
 
+// Support for Keyboardio's OneShot, see: https://github.com/keyboardio/Kaleidoscope-OneShot
+#include <Kaleidoscope-OneShot.h>
+
 /** This 'enum' is a list of all the macros used by the Model 01's firmware
     The names aren't particularly important. What is important is that each
     is unique.
@@ -72,8 +75,6 @@
 enum { MACRO_VERSION_INFO,
        MACRO_ANY
      };
-
-
 
 /** The Model 01's key layouts are defined as 'keymaps'. By default, there are three
     keymaps: The standard QWERTY keymap, the "Function layer" keymap and the "Numpad"
@@ -130,15 +131,16 @@ const Key keymaps[][ROWS][COLS] PROGMEM = {
    Key_Backtick, Key_Q, Key_W, Key_E, Key_R, Key_T, Key_Tab,
    Key_PageUp,   Key_A, Key_S, Key_D, Key_F, Key_G,
    Key_PageDown, Key_Z, Key_X, Key_C, Key_V, Key_B, Key_Escape,
-   Key_LeftControl, Key_Backspace, Key_LeftGui, Key_LeftShift,
-   ShiftToLayer(FUNCTION),
+   OSM(LeftControl), Key_Backspace, OSM(LeftGui), Key_LeftShift,
+   // Takes a layer number as argument, and sets up the key to act as a one-shot layer key.
+   OSL(1),
 
    Key_Keypad2,  Key_6, Key_7, Key_8,     Key_9,         Key_0,         Key_KeypadNumLock,
    Key_Enter,    Key_Y, Key_U, Key_I,     Key_O,         Key_P,         Key_Equals,
                  Key_H, Key_J, Key_K,     Key_L,         Key_Semicolon, Key_Quote,
    Key_Keypad3,  Key_N, Key_M, Key_Comma, Key_Period,    Key_Slash,     Key_Minus,
-   Key_RightShift, Key_LeftAlt, Key_Spacebar, Key_RightControl,
-   ShiftToLayer(FUNCTION)),
+   Key_RightShift, OSM(LeftAlt), Key_Spacebar, OSM(RightControl),
+   OSL(1)),
 
   [FUNCTION] =  KEYMAP_STACKED
   (___,      Key_F1,           Key_F2,      Key_F3,     Key_F4,        Key_F5,           Key_LEDEffectNext,
@@ -254,6 +256,8 @@ static kaleidoscope::LEDSolidColor solidViolet(130, 0, 120);
 */
 
 void setup() {
+  Kaleidoscope.use(&OneShot);
+
   // First, call Kaleidoscope's internal setup function
   Kaleidoscope.setup();
 
