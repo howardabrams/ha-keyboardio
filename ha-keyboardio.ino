@@ -59,6 +59,9 @@
 // Support for Keyboardio's OneShot, see: https://github.com/keyboardio/Kaleidoscope-OneShot
 #include <Kaleidoscope-OneShot.h>
 
+// Support for Keyboardio's LED for Modifier's project, see: https://github.com/keyboardio/Kaleidoscope-LED-ActiveModColor
+#include <Kaleidoscope-LED-ActiveModColor.h>
+
 /** This 'enum' is a list of all the macros used by the Model 01's firmware
     The names aren't particularly important. What is important is that each
     is unique.
@@ -257,6 +260,7 @@ static kaleidoscope::LEDSolidColor solidViolet(130, 0, 120);
 
 void setup() {
   Kaleidoscope.use(&OneShot);
+  Kaleidoscope.use(&ActiveModColorEffect);
 
   // First, call Kaleidoscope's internal setup function
   Kaleidoscope.setup();
@@ -334,6 +338,8 @@ void setup() {
   // This avoids over-taxing devices that don't have a lot of power to share
   // with USB devices
   LEDOff.activate();
+
+  ActiveModColorEffect.highlight_color = CRGB(0xff, 0xff, 0xff);
 }
 
 /** loop is the second of the standard Arduino sketch functions.
