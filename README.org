@@ -1,0 +1,17 @@
+#+TITLE: Hacking Keyboard.io
+#+AUTHOR: Howard Abrams
+#+EMAIL:  howard.abrams@gmail.com
+#+DATE:   2018-04-10 April
+
+I'm quite pleased with my [[http://www.keyboard.io][keyboard.io Model 01]] keyboard (read [[http://howardism.org/Technical/Other/keyboardio-review.html][my review of the keyboard]]).
+
+One of the best features is how /hackable/ this keyboard is, and this project
+contains my customization code.  Note: Nothing here is unique or innovative, as
+I simply grabbed existing libraries and put it together.
+
+What is does:
+
+  + The OneShot library to make the modifier keys /sticky/.
+  + The LED Control library highlights when a modifier is /on/.
+  + The prominent middle keys (=butterfly=, =led= and =any=) send various keys from a
+    Keypad, that allows me to easily rebind them to cool functions.
