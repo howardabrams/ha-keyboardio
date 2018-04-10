@@ -134,7 +134,7 @@ const Key keymaps[][ROWS][COLS] PROGMEM = {
    Key_Backtick, Key_Q, Key_W, Key_E, Key_R, Key_T, Key_Tab,
    Key_PageUp,   Key_A, Key_S, Key_D, Key_F, Key_G,
    Key_PageDown, Key_Z, Key_X, Key_C, Key_V, Key_B, Key_Escape,
-   OSM(LeftControl), Key_Backspace, OSM(LeftGui), Key_LeftShift,
+   OSM(LeftControl), Key_Backspace, OSM(LeftGui), OSM(LeftShift),
    // Takes a layer number as argument, and sets up the key to act as a one-shot layer key.
    OSL(1),
 
@@ -142,7 +142,7 @@ const Key keymaps[][ROWS][COLS] PROGMEM = {
    Key_Enter,    Key_Y, Key_U, Key_I,     Key_O,         Key_P,         Key_Equals,
                  Key_H, Key_J, Key_K,     Key_L,         Key_Semicolon, Key_Quote,
    Key_Keypad3,  Key_N, Key_M, Key_Comma, Key_Period,    Key_Slash,     Key_Minus,
-   Key_RightShift, OSM(LeftAlt), Key_Spacebar, OSM(RightControl),
+   OSM(RightShift), OSM(LeftAlt), Key_Spacebar, OSM(RightControl),
    OSL(1)),
 
   [FUNCTION] =  KEYMAP_STACKED
