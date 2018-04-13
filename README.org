@@ -11,7 +11,10 @@ I simply grabbed existing libraries and put it together.
 
 What is does:
 
-  + The OneShot library to make the modifier keys /sticky/.
-  + The LED Control library highlights when a modifier is /on/.
-  + The prominent middle keys (=butterfly=, =led= and =any=) send various keys from a
-    Keypad, that allows me to easily rebind them to cool functions.
+  - The OneShot library to make the modifier keys /sticky/.
+  - The LED Control library highlights when a modifier is /on/.
+  - The prominent middle keys (=butterfly=, =led= and =any=) send various function
+    keys (F16-F18), that allows me to easily rebind them to cool functions.
+  - Many of the letter keys on the left when pressed with Fn, send the letter
+    with all modifiers pressed, allowing me to connect a sequence to an Alfred
+    workflow (and it works on a regular laptop).

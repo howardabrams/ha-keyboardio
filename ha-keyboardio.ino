@@ -76,7 +76,7 @@
 */
 
 enum { MACRO_VERSION_INFO,
-       MACRO_ANY
+       MACRO_ALL_F
      };
 
 /** The Model 01's key layouts are defined as 'keymaps'. By default, there are three
@@ -130,7 +130,7 @@ enum { QWERTY, FUNCTION, NUMPAD }; // layers
 const Key keymaps[][ROWS][COLS] PROGMEM = {
 
   [QWERTY] = KEYMAP_STACKED
-  (___,          Key_1, Key_2, Key_3, Key_4, Key_5, Key_F16,
+  (Key_F12,      Key_1, Key_2, Key_3, Key_4, Key_5, Key_F16,
    Key_Backtick, Key_Q, Key_W, Key_E, Key_R, Key_T, Key_Tab,
    Key_PageUp,   Key_A, Key_S, Key_D, Key_F, Key_G,
    Key_PageDown, Key_Z, Key_X, Key_C, Key_V, Key_B, Key_Escape,
@@ -146,10 +146,10 @@ const Key keymaps[][ROWS][COLS] PROGMEM = {
    OSL(1)),
 
   [FUNCTION] =  KEYMAP_STACKED
-  (___,      Key_F1,     Key_F2,  Key_F3,  Key_F4,  Key_F5,  Key_LEDEffectNext,
-   Key_Tab,  Key_F14,    Key_F15, Key_F13, ___,     ___,     ___,
-   Key_Home, Key_F20,    Key_F21, Key_F22, Key_F23, ___,
-   Key_End,  Key_F19,    ___,     Key_F24, ___,     ___,     ___,
+  (___,      Key_F1,                   Key_F2,                   Key_F3,                   Key_F4,                   Key_F5,                   Key_LEDEffectNext,
+   Key_Tab,  LGUI(LALT(LCTRL(Key_Q))), LGUI(LALT(LCTRL(Key_W))), LGUI(LALT(LCTRL(Key_E))), LGUI(LALT(LCTRL(Key_R))), LGUI(LALT(LCTRL(Key_T))), ___,
+   Key_Home, LGUI(LALT(LCTRL(Key_A))), LGUI(LALT(LCTRL(Key_S))), LGUI(LALT(LCTRL(Key_D))), LGUI(LALT(LCTRL(Key_F))), LGUI(LALT(LCTRL(Key_G))),
+   Key_End,  LGUI(LALT(LCTRL(Key_Z))), LGUI(LALT(LCTRL(Key_X))), LGUI(LALT(LCTRL(Key_C))), LGUI(LALT(LCTRL(Key_V))), LGUI(LALT(LCTRL(Key_B))), ___,
    ___,      Key_Delete, ___,     ___,
    ___,
 
@@ -192,24 +192,6 @@ static void versionInfoMacro(uint8_t keyState) {
   }
 }
 
-/** anyKeyMacro is used to provide the functionality of the 'Any' key.
-
-   When the 'any key' macro is toggled on, a random alphanumeric key is
-   selected. While the key is held, the function generates a synthetic
-   keypress event repeating that randomly selected key.
-
-*/
-
-static void anyKeyMacro(uint8_t keyState) {
-  static Key lastKey;
-  if (keyToggledOn(keyState))
-    lastKey.keyCode = Key_A.keyCode + (uint8_t)(millis() % 36);
-
-  if (keyIsPressed(keyState))
-    kaleidoscope::hid::pressKey(lastKey);
-}
-
-
 /** macroAction dispatches keymap events that are tied to a macro
     to that macro. It takes two uint8_t parameters.
 
@@ -228,15 +210,9 @@ const macro_t *macroAction(uint8_t macroIndex, uint8_t keyState) {
     case MACRO_VERSION_INFO:
       versionInfoMacro(keyState);
       break;
-
-    case MACRO_ANY:
-      anyKeyMacro(keyState);
-      break;
   }
   return MACRO_NONE;
 }
-
-
 
 // These 'solid' color effect definitions define a rainbow of
 // LED color modes calibrated to draw 500mA or less on the
