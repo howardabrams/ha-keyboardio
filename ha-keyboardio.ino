@@ -146,7 +146,8 @@ const Key keymaps[][ROWS][COLS] PROGMEM = {
    OSL(1)),
 
   [FUNCTION] =  KEYMAP_STACKED
-  (___,      Key_F1,                   Key_F2,                   Key_F3,                   Key_F4,                   Key_F5,                   Key_LEDEffectNext,
+  (LGUI(LALT(LCTRL(Key_Spacebar))),
+             Key_F1,                   Key_F2,                   Key_F3,                   Key_F4,                   Key_F5,                   Key_LEDEffectNext,
    Key_Tab,  LGUI(LALT(LCTRL(Key_Q))), LGUI(LALT(LCTRL(Key_W))), LGUI(LALT(LCTRL(Key_E))), LGUI(LALT(LCTRL(Key_R))), LGUI(LALT(LCTRL(Key_T))), ___,
    Key_Home, LGUI(LALT(LCTRL(Key_A))), LGUI(LALT(LCTRL(Key_S))), LGUI(LALT(LCTRL(Key_D))), LGUI(LALT(LCTRL(Key_F))), LGUI(LALT(LCTRL(Key_G))),
    Key_End,  LGUI(LALT(LCTRL(Key_Z))), LGUI(LALT(LCTRL(Key_X))), LGUI(LALT(LCTRL(Key_C))), LGUI(LALT(LCTRL(Key_V))), LGUI(LALT(LCTRL(Key_B))), ___,
